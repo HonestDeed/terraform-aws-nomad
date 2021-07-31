@@ -47,9 +47,8 @@
         "chmod +x docker-credential-ecr-login",
         "sudo mv docker-credential-ecr-login /bin/",
         "mkdir ~/.docker",
-        "echo '{\"credsStore\": \"ecr-login\"}' > ~/.docker/config.json",
-        "sudo mkdir /root/.docker",
-        "sudo cp /home/ubuntu/.docker/config.json /root/.docker/"
+        "echo '{\"credHelpers\":{\"061657283917.dkr.ecr.us-east-1.amazonaws.com\": \"ecr-login\"}}' > ~/.docker/config.json",
+        "sudo cp /home/ubuntu/.docker/config.json /etc/docker/config.json"
       ]
      },
     {
@@ -73,8 +72,17 @@
         "CONSUL_MODULE_VERSION={{user `consul_module_version`}}"
       ],
       "script": "{{template_dir}}/setup_nomad_consul.sh"
-    }
-
+    },
+    {  
+      "type": "file",  
+      "source": "{{template_dir}}/docker-plugin.hcl",  
+      "destination": "~/docker-plugin.hcl"
+    },
+    {"type": "shell",
+      "inline": [
+        "sudo cp docker-plugin.hcl /opt/nomad/config/docker-plugin.hcl"
+      ]
+     }
   ]
 }
 
