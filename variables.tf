@@ -100,3 +100,17 @@ variable "allowed_inbound_cidr_blocks" {
   type = list(string)
   default = [""]
 }
+
+
+variable "server_ami_id" {
+  description = "The ID of the AMI to run in the cluster for servers."
+  type        = string
+  default     = ""
+}
+
+
+variable "client_ami_id" {
+  description = "The ID of the AMI to run in the cluster for clients."
+  type        = string
+  default     = ""
+}
