@@ -32,27 +32,27 @@ terraform {
 # NOTE: This Terraform data source must return at least one AMI result or the entire template will fail. See
 # /_ci/publish-amis-in-new-account.md for more information.
 # ---------------------------------------------------------------------------------------------------------------------
-data "aws_ami" "nomad_consul" {
-  most_recent = true
+# data "aws_ami" "nomad_consul" {
+#   most_recent = true
 
-  # If we change the AWS Account in which test are run, update this value.
-  owners = ["562637147889"]
+#   # If we change the AWS Account in which test are run, update this value.
+#   owners = ["562637147889"]
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
+#   filter {
+#     name   = "virtualization-type"
+#     values = ["hvm"]
+#   }
 
-  filter {
-    name   = "is-public"
-    values = ["true"]
-  }
+#   filter {
+#     name   = "is-public"
+#     values = ["true"]
+#   }
 
-  filter {
-    name   = "name"
-    values = ["nomad-consul-ubuntu-*"]
-  }
-}
+#   filter {
+#     name   = "name"
+#     values = ["nomad-consul-ubuntu-*"]
+#   }
+# }
 
 # ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY THE SERVER NODES
